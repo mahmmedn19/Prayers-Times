@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/prayerTime"
-        android:name="com.example.prayerstimes.ui.PrayerTime"
+        android:name="com.example.prayerstimes.ui.prayer.PrayerTime"
         android:label="fragment_prayer_time"
         tools:layout="@layout/fragment_prayer_time" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/qiblah"
-        android:name="com.example.prayerstimes.ui.Qiblah"
+        android:name="com.example.prayerstimes.ui.qiblah.Qiblah"
         android:label="fragment_qiblah"
         tools:layout="@layout/fragment_qiblah" />
 </navigation>
