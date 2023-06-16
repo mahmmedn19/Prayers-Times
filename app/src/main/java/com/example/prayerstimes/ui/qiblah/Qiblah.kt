@@ -1,19 +1,17 @@
-package com.example.prayerstimes.ui
+package com.example.prayerstimes.ui.qiblah
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-
 import com.example.prayerstimes.R
 
-class PrayerTime : Fragment() {
 
+class Qiblah : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -21,7 +19,7 @@ class PrayerTime : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prayer_time, container, false)
+        return inflater.inflate(R.layout.fragment_qiblah, container, false)
     }
 
 
