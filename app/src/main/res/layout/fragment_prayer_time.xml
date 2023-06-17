@@ -29,7 +29,7 @@
             android:layout_marginStart="@dimen/spacing_16"
             android:padding="@dimen/spacing_8"
             android:orientation="horizontal"
-            android:background="@color/white"
+            android:background="@drawable/location_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

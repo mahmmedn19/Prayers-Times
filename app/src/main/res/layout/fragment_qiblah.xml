@@ -47,10 +47,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/location_background"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="@dimen/spacing_8"
+            android:padding="@dimen/spacing_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
