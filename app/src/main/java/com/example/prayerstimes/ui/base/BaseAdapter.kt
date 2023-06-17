@@ -11,8 +11,6 @@
 
 package com.example.prayerstimes.ui.base
 
-package com.example.prayerstimes.ui.base
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil

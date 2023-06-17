@@ -1,26 +1,18 @@
 package com.example.prayerstimes.ui.qiblah
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import com.example.prayerstimes.R
+import com.example.prayerstimes.databinding.FragmentQiblahBinding
+import com.example.prayerstimes.ui.base.BaseFragment
 
 
-class Qiblah : Fragment() {
+class Qiblah : BaseFragment<FragmentQiblahBinding>() {
+    override val TAG: String = this::class.java.simpleName
+    override val layoutIdFragment = R.layout.fragment_qiblah
+    override val viewModel: ViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun setup() {
+
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_qiblah, container, false)
-    }
-
-
 }

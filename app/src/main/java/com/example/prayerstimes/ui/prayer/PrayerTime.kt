@@ -1,28 +1,29 @@
+/*
+ * *
+ *  * Created by Mohamed Naser on 6 , 2023.
+ *  *
+ *  * Copyright (c) 2023 All rights reserved.
+ *  *
+ *  * Last modified: 6/17/23, 9:30 PM
+ *
+ *
+ */
+
 package com.example.prayerstimes.ui.prayer
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import com.example.prayerstimes.R
+import com.example.prayerstimes.databinding.FragmentPrayerTimeBinding
+import com.example.prayerstimes.ui.base.BaseFragment
 
-class PrayerTime : Fragment() {
+class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
+    override val TAG: String = this::class.java.simpleName
+    override val layoutIdFragment = R.layout.fragment_prayer_time
+    override val viewModel: ViewModel by viewModels()
+    private val adapter: PrayerTimeAdapter by lazy { PrayerTimeAdapter(viewModel) }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun setup() {
+        binding.recyclerPrayer.adapter = adapter
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prayer_time, container, false)
-    }
-
-
 }
