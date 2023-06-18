@@ -8,6 +8,7 @@ interface PrayerRepository {
         year: String,
         month: String,
         latitude: String,
-        longitude: String
-    ): Response<List<PrayerTimesEntity>>
+        longitude: String,
+        method:String
+    ): PrayerTimesEntity?
 }
