@@ -12,7 +12,7 @@
 package com.example.prayerstimes.data
 
 import android.util.Log
-import com.example.prayerstimes.data.remote.mapper.toPrayerTimes
+import com.example.prayerstimes.data.remote.mapper.toPrayerTimesEntity
 import com.example.prayerstimes.data.remote.network.PrayerService
 import com.example.prayerstimes.domain.model.PrayerTimesEntity
 import com.example.prayerstimes.domain.repo.PrayerRepository
@@ -29,7 +29,7 @@ class PrayerRepositoryImp(private val prayerApi: PrayerService) : PrayerReposito
     ): PrayerTimesEntity? {
         return wrap {
             prayerApi.getPrayerTimes(year, month, latitude, longitude, method)
-        }.data.firstOrNull()?.toPrayerTimes()
+        }.data.firstOrNull()?.toPrayerTimesEntity()
     }
 
     private suspend fun <T : Any> wrap(function: suspend () -> Response<T>): T {
