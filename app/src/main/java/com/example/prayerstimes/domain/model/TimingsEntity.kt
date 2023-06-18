@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class TimingsEntity (
     val fajr: String,
-    val Sunrise: String,
+    val sunrise: String,
     val dhuhr: String,
     val asr: String,
     val maghrib: String,
