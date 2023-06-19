@@ -11,6 +11,8 @@
 
 package com.example.prayerstimes.ui.qiblah
 
-class QiblahViewModel {
+import androidx.lifecycle.ViewModel
+
+class QiblahViewModel:ViewModel() {
 
 }
