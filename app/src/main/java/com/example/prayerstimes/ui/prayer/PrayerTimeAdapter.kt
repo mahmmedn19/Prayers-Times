@@ -14,10 +14,10 @@ package com.example.prayerstimes.ui.prayer
 import com.example.prayerstimes.R
 import com.example.prayerstimes.ui.base.BaseAdapter
 import com.example.prayerstimes.ui.base.BaseInteractionListener
+import com.example.prayerstimes.ui.uiState.PrayerUiState
 
-class PrayerTimeAdapter(listener: PrayerTimeListener) : BaseAdapter<Prayer>(listener) {
-    override val layoutID: Int get() = R.layout.item_prayer
-
+class PrayerTimeAdapter(listener: PrayerTimeListener) : BaseAdapter<PrayerUiState>(listener) {
+    override val layoutID = R.layout.item_prayer
 }
 
 interface PrayerTimeListener : BaseInteractionListener {
