@@ -68,13 +68,13 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
         val geocoder = Geocoder(requireActivity(), Locale.getDefault())
         try {
             val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-            if (addresses!!.isNotEmpty()) {
-                val address = addresses[0]
-                val sb = StringBuilder()
-                for (i in 0..address.maxAddressLineIndex) {
-                    sb.append(address.getAddressLine(i)).append("\n")
+            if (addresses != null) {
+                if (addresses.isNotEmpty()) {
+                    val address = addresses[0]
+                    val country = address.countryName
+                    val city = address.locality
+                    return "$city, $country"
                 }
-                return sb.toString()
             }
         } catch (e: IOException) {
             Log.e(TAG, "Error getting location name: ${e.message}")
@@ -86,7 +86,7 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
         if (checkLocationPermission()) {
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 location?.let {
-                    val locationName = getLocationName(location.latitude, location.longitude)
+                    binding.textLocation.text = getLocationName(location.latitude, location.longitude)
                     fetchPrayerTimes(
                         getCurrentYear(),
                         getCurrentMonth(),
