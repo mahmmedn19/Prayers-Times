@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.prayerstimes.ui.prayer.PrayerTimeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -128,6 +131,7 @@
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:overScrollMode="never"
+                    app:items="@{viewModel.prayerTimesUiState.prayerTimes}"
                     android:scrollbars="none"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_prayer" />

@@ -4,7 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="item"
+            type="com.example.prayerstimes.ui.uiState.PrayerUiState" />
 
+        <variable
+            name="listener"
+            type="com.example.prayerstimes.ui.prayer.PrayerTimeListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -37,6 +43,7 @@
                     style="@style/TextStylePrayerTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@{item.fajr}"
                     android:layout_weight="1"
                     tools:text="11:04" />
             </LinearLayout>
@@ -61,6 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:text="@{item.sunrise}"
                     tools:text="11:04" />
             </LinearLayout>
 
@@ -84,6 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:text="@{item.asr}"
                     tools:text="11:04" />
             </LinearLayout>
 
@@ -107,6 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:text="@{item.asr}"
                     tools:text="11:04" />
             </LinearLayout>
 
@@ -130,6 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:text="@{item.maghrib}"
                     tools:text="11:04" />
             </LinearLayout>
 
@@ -151,6 +162,7 @@
                     android:id="@+id/text_isha_time"
                     style="@style/TextStylePrayerTime"
                     android:layout_width="wrap_content"
+                    android:text="@{item.isha}"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     tools:text="11:04" />
