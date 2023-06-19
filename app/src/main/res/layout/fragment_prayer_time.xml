@@ -100,7 +100,7 @@
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/spacing_16">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_previous"
                         android:layout_width="48dp"
                         android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                         android:textSize="@dimen/text_body2"
                         tools:text="Location" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_next"
                         android:layout_width="48dp"
                         android:layout_height="wrap_content"
