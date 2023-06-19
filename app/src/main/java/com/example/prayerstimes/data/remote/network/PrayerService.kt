@@ -20,10 +20,10 @@ import retrofit2.http.Query
 interface PrayerService {
     @GET("{year}/{month}")
     suspend fun getPrayerTimes(
-        @Path("year") year: String,
-        @Path("month") month: String,
-        @Query("latitude") latitude: String,
-        @Query("longitude") longitude: String,
-        @Query("method") method: String
+        @Path("year") year: Int,
+        @Path("month") month: Int,
+        @Query("latitude") latitude: Double,
+        @Query("longitude") longitude: Double,
+        @Query("method") method: Int
     ): Response<PrayerTimesResponse>
 }

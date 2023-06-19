@@ -14,22 +14,20 @@ package com.example.prayerstimes.data
 import android.util.Log
 import com.example.prayerstimes.data.remote.mapper.toPrayerTimesEntity
 import com.example.prayerstimes.data.remote.network.PrayerService
-import com.example.prayerstimes.domain.model.PrayerTimesEntity
+import com.example.prayerstimes.domain.model.TimingsEntity
 import com.example.prayerstimes.domain.repo.PrayerRepository
 import retrofit2.Response
+import javax.inject.Inject
 
-class PrayerRepositoryImp(private val prayerApi: PrayerService) : PrayerRepository {
+class PrayerRepositoryImp @Inject constructor(private val prayerApi: PrayerService) :
+    PrayerRepository {
 
     override suspend fun getPrayerTimes(
-        year: String,
-        month: String,
-        latitude: String,
-        longitude: String,
-        method: String
-    ): PrayerTimesEntity? {
+        year: Int, month: Int, latitude: Double, longitude: Double, method: Int
+    ): List<TimingsEntity> {
         return wrap {
             prayerApi.getPrayerTimes(year, month, latitude, longitude, method)
-        }.data.firstOrNull()?.toPrayerTimesEntity()
+        }.data.map { it.toPrayerTimesEntity().timings }
     }
 
     private suspend fun <T : Any> wrap(function: suspend () -> Response<T>): T {
@@ -37,7 +35,7 @@ class PrayerRepositoryImp(private val prayerApi: PrayerService) : PrayerReposito
         return if (response.isSuccessful) {
             response.body() ?: throw Throwable("Unknown error occurred")
         } else {
-            Log.e("TAG", "wrap: ${response}")
+            Log.e("TAG", "wrap: $response")
             throw Throwable("Unknown error occurred")
         }
     }

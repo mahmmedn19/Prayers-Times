@@ -1,14 +1,10 @@
 package com.example.prayerstimes.domain.repo
 
-import com.example.prayerstimes.domain.model.PrayerTimesEntity
-import retrofit2.Response
+import com.example.prayerstimes.domain.model.TimingsEntity
+
 
 interface PrayerRepository {
     suspend fun getPrayerTimes(
-        year: String,
-        month: String,
-        latitude: String,
-        longitude: String,
-        method:String
-    ): PrayerTimesEntity?
+        year: Int, month: Int, latitude: Double, longitude: Double, method: Int
+    ): List<TimingsEntity>?
 }
