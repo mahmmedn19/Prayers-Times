@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class Qiblah : BaseFragment<FragmentQiblahBinding>() {
     override val TAG: String = this::class.java.simpleName
     override val layoutIdFragment = R.layout.fragment_qiblah
-    override val viewModel: ViewModel by viewModels()
+    override val viewModel: QiblahViewModel by viewModels()
 
     override fun setup() {
 
