@@ -144,6 +144,7 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
                 location?.let {
                     binding.textLocation.text =
                         getLocationName(location.latitude, location.longitude)
+                    viewModel.fetchPrayerTimesOffline()
                     fetchPrayerTimes(
                         getCurrentYear(),
                         getCurrentMonth(),

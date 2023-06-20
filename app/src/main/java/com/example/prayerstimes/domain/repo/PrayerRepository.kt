@@ -15,4 +15,6 @@ interface PrayerRepository {
         longitude: Double,
         method: Int
     ): List<String>
+
+    suspend fun getPrayerTimesOffline(): List<TimingsEntity>
 }

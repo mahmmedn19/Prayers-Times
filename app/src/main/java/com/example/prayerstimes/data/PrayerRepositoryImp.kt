@@ -33,11 +33,6 @@ class PrayerRepositoryImp @Inject constructor(
         longitude: Double,
         method: Int
     ): List<TimingsEntity> {
-        val cachedPrayerTimes = prayerTimesDao.getPrayerTimes()
-
-        if (cachedPrayerTimes.isNotEmpty()) {
-            return cachedPrayerTimes.map { it.timings }
-        } else {
             val prayerTimesResponse = wrap {
                 prayerApi.getPrayerTimes(year, month, latitude, longitude, method)
             }
@@ -48,10 +43,11 @@ class PrayerRepositoryImp @Inject constructor(
 
             val prayerTimesLocalList = prayerTimesEntityList.map { it.toPrayerTimesLocal() }
             prayerTimesDao.insertPrayerTimes(prayerTimesLocalList)
-            Log.d("Room3", prayerTimesLocalList.toString())
-
             return timingsEntityList
-        }
+
+    }
+    override suspend fun getPrayerTimesOffline(): List<TimingsEntity> {
+        return prayerTimesDao.getPrayerTimes().map { it.timings }
     }
 
 
