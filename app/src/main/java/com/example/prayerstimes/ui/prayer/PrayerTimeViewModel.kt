@@ -13,6 +13,7 @@ package com.example.prayerstimes.ui.prayer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.prayerstimes.domain.usecase.GetPrayerDateFromLocalUseCase
 import com.example.prayerstimes.domain.usecase.GetPrayerDateUseCase
 import com.example.prayerstimes.domain.usecase.GetPrayerTimesUseCase
 import com.example.prayerstimes.ui.uiState.PrayerTimesUiState
@@ -29,14 +30,14 @@ import javax.inject.Inject
 @HiltViewModel
 class PrayerTimeViewModel @Inject constructor(
     private val getPrayerTimesUseCase: GetPrayerTimesUseCase,
-    private val getPrayerDateUseCase: GetPrayerDateUseCase
+    private val getPrayerDateUseCase: GetPrayerDateUseCase,
+    private val getPrayerDateFromLocalUseCase: GetPrayerDateFromLocalUseCase
     ) :
     ViewModel(),
     PrayerTimeListener {
     private val _prayerTimesUiState = MutableStateFlow(PrayerTimesUiState(isLoading = true))
     val prayerTimesUiState: StateFlow<PrayerTimesUiState> = _prayerTimesUiState
-    private val _navigateToQiblaEvent = MutableSharedFlow<Unit>()
-    val navigateToQiblaEvent: SharedFlow<Unit> = _navigateToQiblaEvent
+
 
     private val _prayerDates = MutableStateFlow<List<String>>(emptyList())
     val prayerDates: StateFlow<List<String>> = _prayerDates
@@ -60,7 +61,19 @@ class PrayerTimeViewModel @Inject constructor(
             }
         }
     }
-
+    fun fetchPrayerTimesOffline() {
+        viewModelScope.launch {
+            val times = getPrayerDateFromLocalUseCase()
+            val prayerUiStateList = times.toPrayerUiStateList()
+            _prayerTimesUiState.value = PrayerTimesUiState(
+                isLoading = false,
+                isError = false,
+                message = "",
+                prayerDates = null,
+                prayerTimes = prayerUiStateList
+            )
+        }
+    }
 
 
     override fun onClickPrayer(prayerTime: Long) {

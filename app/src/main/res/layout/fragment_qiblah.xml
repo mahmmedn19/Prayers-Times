@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.prayerstimes.ui.prayer.PrayerTimeViewModel" />
+            type="com.example.prayerstimes.ui.qiblah.QiblahViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
