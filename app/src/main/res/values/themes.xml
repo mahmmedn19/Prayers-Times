@@ -33,6 +33,7 @@
         <item name="android:textSize">@dimen/text_body1</item>
         <item name="android:textAlignment">textStart</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/seed</item>
         <item name="fontFamily">sans-serif-medium</item>
     </style>
     <style name="TextStylePrayerTime">
