@@ -17,4 +17,5 @@ interface PrayerRepository {
     ): List<String>
 
     suspend fun getPrayerTimesOffline(): List<TimingsEntity>
+    suspend fun getQiblaDirection(latitude: Double, longitude: Double): Double
 }
