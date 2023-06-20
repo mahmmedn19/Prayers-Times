@@ -5,6 +5,10 @@
 
     <data>
 
+
+        <variable
+            name="viewModel"
+            type="com.example.prayerstimes.ui.prayer.PrayerTimeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,12 +28,12 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/spacing_16"
             android:layout_marginStart="@dimen/spacing_16"
-            android:padding="@dimen/spacing_8"
-            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_16"
             android:background="@drawable/location_background"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -37,6 +41,7 @@
                 android:id="@+id/ic_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tint="@color/white"
                 app:srcCompat="@drawable/ic_location" />
 
             <TextView
@@ -44,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_body2"
                 tools:text="Location" />
         </LinearLayout>
@@ -65,14 +71,14 @@
             android:id="@+id/text_prayer_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            tools:text="04:43 10"
-            android:textColor="@color/white"
             android:layout_marginTop="@dimen/spacing_32"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="@+id/text_till_prayer_name"
             app:layout_constraintStart_toStartOf="@+id/text_till_prayer_name"
-            app:layout_constraintTop_toBottomOf="@+id/text_till_prayer_name" />
+            app:layout_constraintTop_toBottomOf="@+id/text_till_prayer_name"
+            tools:text="04:43 10" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card"
@@ -94,14 +100,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_16"
                     android:layout_marginBottom="@dimen/spacing_16"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/spacing_16">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_previous"
                         android:layout_width="48dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="start" />
+                        android:layout_gravity="start"
+                        android:background="@drawable/ic_arrow_back" />
 
                     <TextView
                         android:id="@+id/text_date"
@@ -110,12 +118,13 @@
                         android:layout_weight="1"
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center"
-                        android:textSize="@dimen/text_body2"
+                        android:textSize="@dimen/text_body1"
                         tools:text="Location" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_next"
                         android:layout_width="48dp"
+                        android:background="@drawable/ic_arrow_forward"
                         android:layout_height="wrap_content"
                         android:gravity="end" />
 
@@ -129,6 +138,7 @@
                     android:orientation="horizontal"
                     android:overScrollMode="never"
                     android:scrollbars="none"
+                    app:items="@{viewModel.prayerTimesUiState.prayerTimes}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_prayer" />
             </LinearLayout>

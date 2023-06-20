@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.prayerstimes.ui.prayer.PrayerTimeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

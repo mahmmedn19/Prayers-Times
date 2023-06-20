@@ -12,7 +12,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 <solid
-    android:color="#345C5266"
+    android:color="#344C2870"
     />
     <corners android:radius="@dimen/radius_12"/>
 </shape>
