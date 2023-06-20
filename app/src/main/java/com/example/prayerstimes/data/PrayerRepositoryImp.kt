@@ -50,6 +50,10 @@ class PrayerRepositoryImp @Inject constructor(
         return prayerTimesDao.getPrayerTimes().map { it.timings }
     }
 
+    override suspend fun getQiblaDirection(latitude: Double, longitude: Double): Double {
+       return wrap { prayerApi.getQiblaDirection(latitude, longitude) }.data.direction
+    }
+
 
     override suspend fun getPrayerDate(
         year: Int, month: Int, latitude: Double, longitude: Double, method: Int

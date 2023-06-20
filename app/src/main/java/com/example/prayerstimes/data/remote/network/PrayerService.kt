@@ -12,6 +12,7 @@
 package com.example.prayerstimes.data.remote.network
 
 import com.example.prayerstimes.data.remote.model.PrayerTimesResponse
+import com.example.prayerstimes.data.remote.model.QiblahDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -26,4 +27,10 @@ interface PrayerService {
         @Query("longitude") longitude: Double,
         @Query("method") method: Int
     ): Response<PrayerTimesResponse>
+
+    @GET("v1/qibla/{latitude}/{longitude}")
+    suspend fun getQiblaDirection(
+        @Path("latitude") latitude: Double,
+        @Path("longitude") longitude: Double
+    ): Response<QiblahDto>
 }
