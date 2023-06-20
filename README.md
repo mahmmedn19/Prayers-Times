@@ -19,7 +19,8 @@ This is a Prayers Times app that provides prayer times and qibla direction infor
 
 ## Screenshots
 
-[![image](https://github.com/mahmmedn19/Prayers-Times/assets/100851080/d094140f-007f-492d-a22e-ca7d75e5bb75)]
+[![image](https://github.com/mahmmedn19/Prayers-Times/assets/100851080/e0c526f5-4f32-4769-9460-f0ee282b9cd9)
+]
 
 ## Getting Started
 
