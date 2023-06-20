@@ -7,4 +7,12 @@ interface PrayerRepository {
     suspend fun getPrayerTimes(
         year: Int, month: Int, latitude: Double, longitude: Double, method: Int
     ): List<TimingsEntity>?
+
+    suspend fun getPrayerDate(
+        year: Int,
+        month: Int,
+        latitude: Double,
+        longitude: Double,
+        method: Int
+    ): List<String>
 }

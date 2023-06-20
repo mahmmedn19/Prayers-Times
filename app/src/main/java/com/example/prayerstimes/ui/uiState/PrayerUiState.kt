@@ -7,6 +7,7 @@ data class PrayerTimesUiState(
     val isLoading: Boolean = true,
     val isError: Boolean = false,
     val message: String = "",
+    val prayerDates: List<String>? = null,
     val prayerTimes: List<PrayerUiState>? = null
 )
 

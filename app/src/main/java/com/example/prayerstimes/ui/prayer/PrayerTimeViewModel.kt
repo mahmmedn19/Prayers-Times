@@ -13,6 +13,7 @@ package com.example.prayerstimes.ui.prayer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.prayerstimes.domain.usecase.GetPrayerDateUseCase
 import com.example.prayerstimes.domain.usecase.GetPrayerTimesUseCase
 import com.example.prayerstimes.ui.uiState.PrayerTimesUiState
 import com.example.prayerstimes.ui.uiState.toPrayerUiStateList
@@ -26,7 +27,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PrayerTimeViewModel @Inject constructor(private val getPrayerTimesUseCase: GetPrayerTimesUseCase) :
+class PrayerTimeViewModel @Inject constructor(
+    private val getPrayerTimesUseCase: GetPrayerTimesUseCase,
+    private val getPrayerDateUseCase: GetPrayerDateUseCase
+    ) :
     ViewModel(),
     PrayerTimeListener {
     private val _prayerTimesUiState = MutableStateFlow(PrayerTimesUiState(isLoading = true))
@@ -34,6 +38,8 @@ class PrayerTimeViewModel @Inject constructor(private val getPrayerTimesUseCase:
     private val _navigateToQiblaEvent = MutableSharedFlow<Unit>()
     val navigateToQiblaEvent: SharedFlow<Unit> = _navigateToQiblaEvent
 
+    private val _prayerDates = MutableStateFlow<List<String>>(emptyList())
+    val prayerDates: StateFlow<List<String>> = _prayerDates
 /*    init {
         fetchPrayerTimes()
     }*/
@@ -43,9 +49,11 @@ class PrayerTimeViewModel @Inject constructor(private val getPrayerTimesUseCase:
             _prayerTimesUiState.value = PrayerTimesUiState(isLoading = true)
             try {
                 val prayerTimes = getPrayerTimesUseCase(year, month, latitude, longitude, 5)
+                val prayerDates = getPrayerDateUseCase(year, month, latitude, longitude, 5)
+                _prayerDates.value = prayerDates
                 val prayerUiState = prayerTimes?.toPrayerUiStateList()
                 _prayerTimesUiState.value =
-                    PrayerTimesUiState(prayerTimes = prayerUiState, isLoading = false)
+                    PrayerTimesUiState(prayerTimes = prayerUiState,prayerDates = prayerDates, isLoading = false)
             } catch (e: Exception) {
                 _prayerTimesUiState.value = PrayerTimesUiState(
                     isError = true,

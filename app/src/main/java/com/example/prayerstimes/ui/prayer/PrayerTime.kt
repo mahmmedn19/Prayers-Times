@@ -14,7 +14,6 @@ package com.example.prayerstimes.ui.prayer
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager
 import android.location.Geocoder
-import android.os.CountDownTimer
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
@@ -24,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayerstimes.R
 import com.example.prayerstimes.databinding.FragmentPrayerTimeBinding
 import com.example.prayerstimes.ui.base.BaseFragment
+import com.example.prayerstimes.util.DateUtils.getCurrentDay
 import com.example.prayerstimes.util.DateUtils.getCurrentMonth
 import com.example.prayerstimes.util.DateUtils.getCurrentYear
 import com.example.prayerstimes.util.getCurrentVisiblePosition
@@ -45,6 +45,13 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
 
     override fun setup() {
         binding.recyclerPrayer.adapter = adapter
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.prayerDates.collect { prayerDates ->
+                updatePrayerDate(prayerDates.firstOrNull())
+            }
+        }
+
         binding.buttonNext.setOnClickListener {
             navigateToQiblaFragment()
         }
@@ -59,9 +66,20 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
         binding.btnNext.setOnClickListener {
             scrollToNextPrayerTime()
         }
-
+        scrollToCurrentDay()
+    }
+    private fun scrollToCurrentDay() {
+        val layoutManager = binding.recyclerPrayer.layoutManager as? LinearLayoutManager
+        layoutManager?.let {
+            val position = getCurrentDay()
+            binding.recyclerPrayer.scrollToPositionSmooth(position)
+            updatePrayerDate(viewModel.prayerDates.value.getOrNull(position))
+        }
     }
 
+    private fun updatePrayerDate(date: String?) {
+        binding.textDate.text = date ?: ""
+    }
     private fun fetchPrayerTimes(year: Int, month: Int, latitude: Double, longitude: Double) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.fetchPrayerTimes(year, month, latitude, longitude)
@@ -81,6 +99,7 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
             val nextPosition = currentVisiblePosition + 1
             if (nextPosition < adapter.itemCount) {
                 binding.recyclerPrayer.scrollToPositionSmooth(nextPosition)
+                updatePrayerDate(viewModel.prayerDates.value.getOrNull(nextPosition))
             }
         }
     }
@@ -92,6 +111,7 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
             val previousPosition = currentVisiblePosition - 1
             if (previousPosition >= 0) {
                 binding.recyclerPrayer.scrollToPositionSmooth(previousPosition)
+                updatePrayerDate(viewModel.prayerDates.value.getOrNull(previousPosition))
             }
         }
     }

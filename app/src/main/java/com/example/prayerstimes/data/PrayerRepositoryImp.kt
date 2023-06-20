@@ -29,6 +29,13 @@ class PrayerRepositoryImp @Inject constructor(private val prayerApi: PrayerServi
             prayerApi.getPrayerTimes(year, month, latitude, longitude, method)
         }.data.map { it.toPrayerTimesEntity().timings }
     }
+    override suspend fun getPrayerDate(
+        year: Int, month: Int, latitude: Double, longitude: Double, method: Int
+    ): List<String> {
+        return wrap {
+            prayerApi.getPrayerTimes(year, month, latitude, longitude, method)
+        }.data.map { it.toPrayerTimesEntity().date.readable }
+    }
 
     private suspend fun <T : Any> wrap(function: suspend () -> Response<T>): T {
         val response = function()
