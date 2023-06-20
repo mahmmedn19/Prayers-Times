@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.prayerstimes.ui.uiState.PrayerUiState" />
+
+        <variable
+            name="listener"
+            type="com.example.prayerstimes.ui.prayer.PrayerTimeListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_fajr"
+                    style="@style/TextStylePrayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/fajr" />
+
+                <TextView
+                    android:id="@+id/text_fajr_time"
+                    style="@style/TextStylePrayerTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{item.fajr.substring(0,5)}"
+                    tools:text="11:04" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_sunrise"
+                    style="@style/TextStylePrayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sunrise" />
+
+                <TextView
+                    android:id="@+id/text_sunrise_time"
+                    style="@style/TextStylePrayerTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{item.sunrise.substring(0,5)}"
+                    tools:text="11:04" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_dhuhr"
+                    style="@style/TextStylePrayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/dhuhr" />
+
+                <TextView
+                    android:id="@+id/text_dhuhr_time"
+                    style="@style/TextStylePrayerTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{item.dhuhr.substring(0,5)}"
+                    tools:text="11:04" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_asr"
+                    style="@style/TextStylePrayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/asr" />
+
+                <TextView
+                    android:id="@+id/text_asr_time"
+                    style="@style/TextStylePrayerTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{item.asr.substring(0,5)}"
+                    tools:text="11:04" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_maghrib"
+                    style="@style/TextStylePrayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/maghrib" />
+
+                <TextView
+                    android:id="@+id/text_maghrib_time"
+                    style="@style/TextStylePrayerTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{item.maghrib.substring(0,5)}"
+                    tools:text="11:04" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_isha"
+                    style="@style/TextStylePrayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/isha" />
+
+                <TextView
+                    android:id="@+id/text_isha_time"
+                    style="@style/TextStylePrayerTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{item.isha.substring(0,5)}"
+                    tools:text="11:04" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

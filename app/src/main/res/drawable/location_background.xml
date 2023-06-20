@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Mohamed Naser on 6 , 2023.
+  ~  *
+  ~  * Copyright (c) 2023 All rights reserved.
+  ~  *
+  ~  * Last modified: 6/17/23, 1:47 PM
+  ~  */
+  ~
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+<solid
+    android:color="#344C2870"
+    />
+    <corners android:radius="@dimen/radius_12"/>
+</shape>
