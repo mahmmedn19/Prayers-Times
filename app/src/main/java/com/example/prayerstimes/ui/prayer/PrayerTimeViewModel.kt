@@ -40,9 +40,6 @@ class PrayerTimeViewModel @Inject constructor(
 
     private val _prayerDates = MutableStateFlow<List<String>>(emptyList())
     val prayerDates: StateFlow<List<String>> = _prayerDates
-/*    init {
-        fetchPrayerTimes()
-    }*/
 
     fun fetchPrayerTimes(year: Int, month: Int, latitude: Double, longitude: Double) {
         viewModelScope.launch(Dispatchers.IO) {

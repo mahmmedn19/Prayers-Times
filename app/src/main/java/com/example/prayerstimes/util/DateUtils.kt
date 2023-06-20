@@ -12,9 +12,9 @@ object DateUtils {
         val calendar = Calendar.getInstance()
         return calendar.get(Calendar.MONTH) + 1
     }
+
     fun getCurrentDay(): Int {
         val calendar = Calendar.getInstance()
         return calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH) + 1
     }
-
 }

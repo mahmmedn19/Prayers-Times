@@ -68,6 +68,7 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
         }
         scrollToCurrentDay()
     }
+
     private fun scrollToCurrentDay() {
         val layoutManager = binding.recyclerPrayer.layoutManager as? LinearLayoutManager
         layoutManager?.let {
