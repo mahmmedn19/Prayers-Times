@@ -17,8 +17,7 @@ This is a Prayers Times app that provides prayer times and qibla direction infor
 - Dagger Hilt
 - Coroutine
 ## Project structure
-![Untitled-2023-06-21-0155 (1)](https://github.com/mahmmedn19/Prayers-Times/assets/100851080/18b041cb-51f4-4086-b16d-abe4969eb571)
-
+![247311371-18b041cb-51f4-4086-b16d-abe4969eb571 (4)](https://github.com/mahmmedn19/Prayers-Times/assets/100851080/35ac1c3a-4fbe-4573-832a-010a4018e99c)
 
 
 ## Screenshots
