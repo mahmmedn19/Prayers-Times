@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_prayer_time" >
         <action
             android:id="@+id/action_prayerTime_to_qiblah"
-            app:destination="@id/qiblah" />
+            app:destination="@id/qiblah"
+            app:enterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/qiblah"
