@@ -12,9 +12,14 @@
 package com.example.prayerstimes.ui.prayer
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.app.AlertDialog
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.net.Uri
+import android.provider.Settings
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -144,7 +149,7 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
                 location?.let {
                     binding.textLocation.text =
                         getLocationName(location.latitude, location.longitude)
-                    viewModel.fetchPrayerTimesOffline()
+                   // viewModel.fetchPrayerTimesOffline()
                     fetchPrayerTimes(
                         getCurrentYear(),
                         getCurrentMonth(),
@@ -156,6 +161,56 @@ class PrayerTime : BaseFragment<FragmentPrayerTimeBinding>() {
 
         } else {
             requestLocationPermission()
+        }
+    }
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation()
+            } else {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        requireActivity(),
+                        ACCESS_FINE_LOCATION
+                    )
+                ) {
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Location Permission Needed")
+                        .setMessage("This app needs the Location permission, please accept to use location functionality.")
+                        .setPositiveButton("OK") { _, _ ->
+                            requestLocationPermission()
+                        }
+                        .setNegativeButton("Cancel") { dialog, _ ->
+                            Toast.makeText(requireContext(),"This app needs the Location permission",Toast.LENGTH_LONG).show()
+                            dialog.dismiss()
+                        }
+                        .create()
+                        .show()
+                } else {
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Location Permission Needed")
+                        .setMessage("This app needs the Location permission. Please go to Settings to grant the permission manually.")
+                        .setPositiveButton("OK") { _, _ ->
+                            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                            val uri = Uri.fromParts("package", "packageName", null)
+                            intent.data = uri
+                            startActivity(intent)
+                        }
+                        .setNegativeButton("Cancel") { dialog, _ ->
+                            Toast.makeText(requireContext(),"This app needs the Location permission",Toast.LENGTH_LONG).show()
+                            dialog.dismiss()
+                        }
+                        .create()
+                        .show()
+                }
+            }
         }
     }
 

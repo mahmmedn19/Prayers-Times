@@ -20,9 +20,7 @@ import com.example.prayerstimes.ui.uiState.PrayerTimesUiState
 import com.example.prayerstimes.ui.uiState.toPrayerUiStateList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -44,20 +42,28 @@ class PrayerTimeViewModel @Inject constructor(
 
     fun fetchPrayerTimes(year: Int, month: Int, latitude: Double, longitude: Double) {
         viewModelScope.launch(Dispatchers.IO) {
-            _prayerTimesUiState.value = PrayerTimesUiState(isLoading = true)
-            try {
-                val prayerTimes = getPrayerTimesUseCase(year, month, latitude, longitude, 5)
-                val prayerDates = getPrayerDateUseCase(year, month, latitude, longitude, 5)
-                _prayerDates.value = prayerDates
-                val prayerUiState = prayerTimes?.toPrayerUiStateList()
-                _prayerTimesUiState.value =
-                    PrayerTimesUiState(prayerTimes = prayerUiState,prayerDates = prayerDates, isLoading = false)
-            } catch (e: Exception) {
-                _prayerTimesUiState.value = PrayerTimesUiState(
-                    isError = true,
-                    message = e.message ?: "Error occurred",
-                    isLoading = false
-                )
+            if(getPrayerDateFromLocalUseCase().isNotEmpty()){
+                fetchPrayerTimesOffline()
+            }else {
+                _prayerTimesUiState.value = PrayerTimesUiState(isLoading = true)
+                try {
+                    val prayerTimes = getPrayerTimesUseCase(year, month, latitude, longitude, 5)
+                    val prayerDates = getPrayerDateUseCase(year, month, latitude, longitude, 5)
+                    _prayerDates.value = prayerDates
+                    val prayerUiState = prayerTimes?.toPrayerUiStateList()
+                    _prayerTimesUiState.value =
+                        PrayerTimesUiState(
+                            prayerTimes = prayerUiState,
+                            prayerDates = prayerDates,
+                            isLoading = false
+                        )
+                } catch (e: Exception) {
+                    _prayerTimesUiState.value = PrayerTimesUiState(
+                        isError = true,
+                        message = e.message ?: "Error occurred",
+                        isLoading = false
+                    )
+                }
             }
         }
     }

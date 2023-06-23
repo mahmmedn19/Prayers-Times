@@ -76,12 +76,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_32"
             android:fontFamily="sans-serif-medium"
+            android:text="04:43 10"
+            android:layout_marginBottom="@dimen/spacing_16"
             android:textColor="@color/white"
             android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/card"
             app:layout_constraintEnd_toEndOf="@+id/text_till_prayer_name"
             app:layout_constraintStart_toStartOf="@+id/text_till_prayer_name"
-            app:layout_constraintTop_toBottomOf="@+id/text_till_prayer_name"
-            tools:text="04:43 10" />
+            app:layout_constraintTop_toBottomOf="@+id/text_till_prayer_name" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card"
@@ -127,8 +129,8 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_next"
                         android:layout_width="48dp"
-                        android:background="@drawable/ic_arrow_forward"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/ic_arrow_forward"
                         android:gravity="end" />
 
                 </LinearLayout>
