@@ -49,10 +49,10 @@ class Qiblah : BaseFragment<FragmentQiblahBinding>() {
                 location?.let {
                     binding.textLocation.text =
                         getLocationName(location.latitude, location.longitude)
-                    fetchQiblaDirection(
+/*                    fetchQiblaDirection(
                         25.4106386,
                         51.1846025
-                    )
+                    )*/
                 }
             }
         } else {
